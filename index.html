@@ -19,8 +19,7 @@
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" href="#transactions">收支记录</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#events">班级活动</a></li>
-                        <!--<li class="nav-item"><a class="nav-link" href="#contact">联系我们</a></li>-->
+                        <li class="nav-item"><a class="nav-link" href="#events">班级日志</a></li>
                     </ul>
                 </div>
             </div>
@@ -30,8 +29,8 @@
     <div class="container my-5">
         <section id="home" class="text-center">
             <h2>欢迎！</h2>
-            <p class="lead">当前班费余额：<span id="balance" class="fw-bold">¥1205.35</span></p>
-            <p>最新公告：大家的表演太棒啦！</p>
+            <p class="lead">当前班费余额：<span id="balance" class="fw-bold">¥1700.88</span></p>
+            <p>最新公告：寒假快乐！</p>
         </section>
 
         <section id="transactions" class="mt-5">
@@ -85,37 +84,28 @@
                         <td>支出</td>
                     </tr>
                 </tbody>
+				<tbody id="transaction-list">
+				    <tr>
+				        <td>2025-01-15</td>
+				        <td>银行结息 & 班团大赛报销</td>
+				        <td>+495.53</td>
+				        <td>收入</td>
+				    </tr>
+				</tbody>
             </table>
         </section>
 
         <section id="events" class="mt-5">
-            <h2>班级活动</h2>
+            <h2>班级日志</h2>
             <p>2024.10.13，我们召开了一个超超长的班会，会后我们确定了第一次启动资金的来源呢！</p>
             <p>2024.10.25，第一笔班费花出去啦，用于我们的班旗和班徽设计。这笔钱之后如果有发票的话是可以向学校报销的啦~</p>
             <p>2024.11.17，同学们的表演实在是太完美啦！其中的服装等费用支出先由班费支付，之后也是可以报销的呢！</p>
+            <p>2025.01.15，马上就要过年了！预祝大家新年快乐，学习进步，开心每一天！！@所有人</p>
         </section>
-<!--
-        <section id="contact" class="mt-5">
-            <h2>联系我们</h2>
-            <form id="contact-form" class="row g-3">
-                <div class="col-md-6">
-                    <label for="name" class="form-label">姓名</label>
-                    <input type="text" id="name" class="form-control" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="message" class="form-label">留言</label>
-                    <textarea id="message" class="form-control" rows="4" required></textarea>
-                </div>
-                <div class="col-12">
-                    <button type="submit" class="btn btn-success">发送</button>
-                </div>
-            </form>
-        </section>
--->
     </div>
 
     <footer class="bg-dark text-white text-center py-3 mt-5">
-        <p>&copy; 2024 班费管理系统. 版权所有。</p>
+        <p>&copy; 2024-2025 班费管理系统. 版权所有。</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
