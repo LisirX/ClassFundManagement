@@ -4,7 +4,7 @@ name: Build and Deploy to GitHub Pages
 # 触发工作流的条件：当有代码被 push 到 main 分支时
 on:
   push:
-    branches: [ "main" ] # 如果你的主分支是 master，请改成 [ "master" ]
+    branches: [ "matser" ]
 
 # 允许工作流拥有写入 GitHub Pages 的权限
 permissions:

@@ -1,15 +1,80 @@
-body {
-    background-color: #f8f9fa;
+/* src/assets/main.css */
+
+/* 1. 定义新的颜色变量和字体 */
+:root {
+    --primary-color: #4a90e2; /* 一个柔和的蓝色作为主色调 */
+    --secondary-color: #50e3c2; /* 一个清新的绿色作为辅助色 */
+    --text-color: #333;
+    --light-gray: #f4f7f6;
+    --border-color: #e0e0e0;
+  
+    /* 定义字体 */
+    --font-primary: 'Poppins', 'Noto Sans SC', sans-serif;
+    --font-secondary: 'Noto Sans SC', sans-serif;
+  }
+  
+  /* 2. 全局样式和字体应用 */
+  body {
+    font-family: var(--font-secondary);
+    background-color: var(--light-gray);
+    color: var(--text-color);
+    line-height: 1.7;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-primary);
+    font-weight: 600;
+  }
+  
+  /* 3. 为所有可交互元素添加平滑过渡 */
+  a, .btn, .nav-link, .table-hover > tbody > tr {
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* 4. 定义卡片阴影的悬停效果 */
+  .card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* 5. 表格行的悬停效果 */
+  .table-hover > tbody > tr:hover {
+    background-color: rgba(74, 144, 226, 0.1) !important; /* 使用主色的淡化背景 */
+    cursor: pointer;
+    transform: scale(1.02);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    z-index: 10;
+    position: relative;
+  }
+
+/* --- 新增：用于内容区域的纵向滚动样式 --- */
+.scrollable-content-area {
+  /* 关键：设置一个最大高度，vh 单位表示视口高度的百分比 */
+  /* 65vh 意味着高度最大为屏幕可见高度的65% */
+  max-height: 65vh;
+  overflow-y: auto; /* 当内容超出时，自动显示纵向滚动条 */
+  padding-right: 10px; /* 为滚动条留出一点空间，防止内容紧贴 */
 }
 
-h2 {
-    margin-bottom: 20px;
+/* 美化这个区域的滚动条 (可选，但推荐) */
+.scrollable-content-area::-webkit-scrollbar {
+  width: 6px;
 }
 
-.table th, .table td {
-    text-align: center;
+.scrollable-content-area::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
 }
 
-footer p {
-    margin: 0;
+.scrollable-content-area::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+
+.scrollable-content-area::-webkit-scrollbar-thumb:hover {
+  background: #aaa;
 }
