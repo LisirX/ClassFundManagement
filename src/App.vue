@@ -18,6 +18,7 @@ const transactions = ref([
   { date: '2025-01-15', description: '银行结息 & 班团大赛报销', amount: 495.53, type: '收入' },
   { date: '2025-03-20', description: '银行结息', amount: 0.39, type: '收入' },
   { date: '2025-06-06', description: '团费代缴', amount: -21.60, type: '支出' },
+  { date: '2025-06-20', description: '银行结息', amount: +0.22, type: '收入' },
 ]);
 
 const events = ref([
