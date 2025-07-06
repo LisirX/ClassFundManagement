@@ -1,0 +1,58 @@
+# 工作流的名称，会显示在 GitHub 的 "Actions" 标签页里
+name: Build and Deploy to GitHub Pages
+
+# 触发工作流的条件：当有代码被 push 到 main 分支时
+on:
+  push:
+    branches: [ "main" ] # 如果你的主分支是 master，请改成 [ "master" ]
+
+# 允许工作流拥有写入 GitHub Pages 的权限
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 定义工作流中要执行的任务
+jobs:
+  # 定义一个名为 "build-and-deploy" 的任务
+  build-and-deploy:
+    # 指定任务运行的环境为最新的 Ubuntu
+    runs-on: ubuntu-latest
+    
+    # 任务中包含的一系列步骤
+    steps:
+      # 第 1 步：拉取你的仓库代码
+      - name: Checkout code
+        uses: actions/checkout@v4 # 使用官方的 checkout action
+
+      # 第 2 步：设置 Node.js 环境，因为 Vue/Vite 需要它
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # 指定使用的 Node.js 版本
+          cache: 'npm'       # 缓存 npm 依赖，加快后续构建速度
+
+      # 第 3 步：安装项目依赖
+      - name: Install dependencies
+        run: npm install
+
+      # 第 4 步：构建项目
+      # npm run build 会执行 vite build，Vite 会自动读取 vite.config.js 中的 base 配置
+      - name: Build project
+        run: npm run build
+
+      # 第 5 步：配置 GitHub Pages
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      # 第 6 步：将构建产物（dist 文件夹）打包成可部署的工件
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # 指定要上传的文件夹路径
+          path: './dist'
+
+      # 第 7 步：部署到 GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
