@@ -55,7 +55,7 @@ onBeforeUnmount(() => {
             <div class="content-wrapper">
               <h5 class="fw-bold mb-2" ref="titleRef">班费管理系统</h5>
               <span class="badge rounded-pill bg-primary-subtle text-primary-emphasis px-3 py-2" ref="badgeRef">
-                <i class="fa-solid fa-graduation-cap me-1"></i>混合 · 2402
+                <i class="fa-solid fa-graduation-cap me-1"></i>混合·2402
               </span>
             </div>
           </div>
