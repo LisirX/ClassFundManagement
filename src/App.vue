@@ -16,8 +16,8 @@ onMounted(async () => {
   try {
     // 使用 fetch API 并行获取两个 JSON 文件
     const [transRes, eventsRes] = await Promise.all([
-      fetch('/transactions.json'), // GET public/transactions.json
-      fetch('/events.json')        // GET public/events.json
+      fetch('transactions.json'), // GET public/transactions.json
+      fetch('events.json')        // GET public/events.json
     ]);
 
     // 检查网络请求是否成功
