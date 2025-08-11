@@ -1,5 +1,4 @@
 <script setup>
-// 1. 从 vue 中多引入 onMounted 生命周期钩子
 import { ref, computed, onMounted } from 'vue';
 import TheHeader from './components/TheHeader.vue';
 import WelcomeCard from './components/WelcomeCard.vue';
@@ -7,38 +6,33 @@ import TransactionList from './components/TransactionList.vue';
 import ClassLog from './components/ClassLog.vue';
 import TheFooter from './components/TheFooter.vue';
 
-// 2. 将 hardcoded 的数据定义改为空数组的 ref
 const transactions = ref([]);
 const events = ref([]);
+const errorMessage = ref(''); // 用于存储错误信息
+const showToast = ref(false); // 控制 Toast 显示状态
 
-// 3. 使用 onMounted 钩子，在组件挂载后执行数据获取操作
 onMounted(async () => {
   try {
-    // 使用 fetch API 并行获取两个 JSON 文件
     const [transRes, eventsRes] = await Promise.all([
-      fetch('transactions.json'), // GET public/transactions.json
-      fetch('events.json')        // GET public/events.json
+      fetch('transactions.json'),
+      fetch('events.json')
     ]);
 
-    // 检查网络请求是否成功
     if (!transRes.ok || !eventsRes.ok) {
-      throw new Error('Network response was not ok');
+      throw new Error('无法加载数据，请检查网络连接或文件路径是否正确。');
     }
 
-    // 解析 JSON 数据并更新 ref
     transactions.value = await transRes.json();
     events.value = await eventsRes.json();
-
   } catch (error) {
-    // 在控制台打印错误，方便调试
-    console.error("无法加载数据:", error);
-    // 在真实应用中，你可能想在这里设置一个错误状态，并在 UI 上显示提示
+    errorMessage.value = '在获取账单和事件列表时出现错误...'; // 更新错误信息
+    showToast.value = true; // 显示 Toast
+    setTimeout(() => {
+      showToast.value = false; // 自动隐藏 Toast
+    }, 3000); // 3秒后隐藏
   }
 });
 
-
-// balance 计算属性保持不变。
-// Vue 的响应式系统会确保在 transactions 数据加载完成后，它会自动重新计算。
 const balance = computed(() => {
   const total = transactions.value.reduce((sum, transaction) => sum + transaction.amount, 0);
   return total.toFixed(2);
@@ -46,12 +40,30 @@ const balance = computed(() => {
 </script>
 
 <template>
-  <!-- ================================== -->
-  <!--   这部分模板代码 (template) 无需任何修改   -->
-  <!-- ================================== -->
   <TheHeader />
   <main class="container py-4 py-lg-5" style="padding-top: 150px;">
     <WelcomeCard :balance="balance" />
+
+    <!-- 错误消息 Toast -->
+    <div
+      class="toast-container position-fixed bottom-0 end-0 p-3"
+      style="z-index: 1050;"
+      v-if="showToast"
+    >
+      <div class="toast show align-items-center text-bg-danger border-0" role="alert">
+        <div class="d-flex">
+          <div class="toast-body">
+            {{ errorMessage }}
+          </div>
+          <button
+            type="button"
+            class="btn-close btn-close-white me-2 m-auto"
+            aria-label="Close"
+            @click="showToast = false"
+          ></button>
+        </div>
+      </div>
+    </div>
 
     <div class="d-lg-none">
       <ul class="nav nav-tabs nav-fill mb-3" id="myTab" role="tablist">

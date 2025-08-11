@@ -8,7 +8,6 @@ defineProps({
   }
 });
 
-// JS部分保持不变
 const titleRef = ref(null);
 const badgeRef = ref(null);
 const backgroundWidth = ref(0);
@@ -43,12 +42,9 @@ onBeforeUnmount(() => {
             <p class="display-3 fw-bolder mb-0" style="color: var(--primary-color);">¥{{ balance }}</p>
           </div>
 
-          <!-- 分隔线保持不变，它只在桌面显示 -->
+          <!-- 分隔线只在桌面显示 -->
           <div class="separator-dots d-none d-lg-block"></div>
 
-          <!-- 
-            核心改变：添加 d-none 和 d-md-block
-          -->
           <div class="side-info-box mt-4 mt-lg-0 d-none d-md-block">
             <div class="dynamic-background" :style="{ width: backgroundWidth + 'px' }"></div>
             
@@ -67,7 +63,6 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped>
-/* 所有CSS保持不变 */
 @media (min-width: 992px) {
   .main-info-box { flex: 1.618; text-align: right; }
   .side-info-box { flex: 1; display: flex; justify-content: flex-start; align-items: center; }

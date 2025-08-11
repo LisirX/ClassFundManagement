@@ -12,7 +12,6 @@ defineProps({
     <i class="fa-solid fa-receipt me-3" style="color: var(--primary-color);"></i>
     收支记录
   </h2>
-  <!-- 这个 div 是我们的目标 -->
   <div class="table-responsive">
     <table class="table table-hover align-middle">
       <thead class="table-light">
@@ -83,7 +82,7 @@ defineProps({
   transform: translateX(30px);
 }
 
-/* --- 新增：隐藏横向滑动条 --- */
+/* --- 隐藏横向滑动条 --- */
 .table-responsive {
   /* For Firefox */
   scrollbar-width: none;

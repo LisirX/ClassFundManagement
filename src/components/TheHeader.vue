@@ -10,7 +10,7 @@ let latestMouseY = 0;
 // 2. 一个变量来保存我们的动画循环ID，以便之后可以取消它
 let animationFrameId = null;
 
-// 3. 鼠标移动事件监听器现在只做一件事：更新坐标变量。非常轻量！
+// 3. 鼠标移动事件监听器现在只做一件事：更新坐标变量。
 const handleMouseMove = (event) => {
   if (!headerRef.value) return;
   const rect = headerRef.value.getBoundingClientRect();
@@ -18,7 +18,7 @@ const handleMouseMove = (event) => {
   latestMouseY = event.clientY - rect.top;
 };
 
-// 4. 这是我们的高性能更新函数
+// 4. 高性能更新函数
 const updateGlarePosition = () => {
   if (headerRef.value) {
     // 只有在这个函数里，我们才真正去修改CSS变量
@@ -75,12 +75,9 @@ onUnmounted(() => {
   width: 350px; height: 350px; border-radius: 50%;
   background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 65%);
   
-  /* 核心：使用 transform 来移动，并设置一个更长的、带有延迟感的过渡 */
+  /* 使用 transform 来移动，并设置一个更长的、带有延迟感的过渡 */
   transform: translate(-50%, -50%) translate(var(--mouse-x, -500px), var(--mouse-y, -500px));
   opacity: 0;
-  /* 
-    增加 transition 的持续时间，让“追赶”的感觉更明显、更“黄油”
-  */
   transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.4s ease;
   pointer-events: none;
 }
