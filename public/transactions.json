@@ -12,5 +12,5 @@
     { "date": "2025-12-20", "description": "银行结息", "amount": 0.21, "type": "收入" },
     { "date": "2026-03-20", "description": "银行结息", "amount": 0.21, "type": "收入" },
     { "date": "2026-06-20", "description": "银行结息", "amount": 0.21, "type": "收入" },
-    { "date": "2026-09-21", "description": "银行结息", "amount": 0.21, "type": "收入" },
+    { "date": "2026-09-21", "description": "银行结息", "amount": 0.21, "type": "收入" }
   ]
